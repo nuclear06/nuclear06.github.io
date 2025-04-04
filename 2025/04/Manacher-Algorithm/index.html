@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="[&quot;en&quot;,&quot;zh&quot;,&quot;default&quot;]" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Manacher算法 | SilenceSkY</title><link rel="icon" type="image/x-icon" href="../../../favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="../../../font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="../../../font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="../../../font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="../../../css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="../../../lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="../../../lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('../../../img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="../../../js/arknights.js"></script><script defer src="../../../js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="../../../lib/encrypt/hbe.js"></script><script async src="../../../js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="../../../"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="../../../archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Manacher算法</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-04-04T06:48:22.000Z" id="date"> 2025-04-04</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-04-04T13:19:29.507Z" id="updated"> 2025-04-04</time></div></span><br><span>Word Count: <div class="control">2.1k</div></span><br><span>Read Time: <div class="control">8 min</div></span></div></div><hr><div id="post-content"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2>
+<p><em>Manacher</em> 算法是一个o(n) 时间复杂度求解字符串的最长回文子串的算法，其思想类似 _KMP_算法，核心思想在于利用回文的对称性，用空间换时间，将已经计算过的最长子串长度存储起来，降低后续的计算量。其遍历字符串中每个字符，计算以其为中心的最长回文子串，同时利用之前的信息减少计算。</p>
+<h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2>
+<p>以下为个人总结的几个重点</p>
+<h3 id="字符串预处理"><a href="#字符串预处理" class="headerlink" title="字符串预处理"></a>1.字符串预处理</h3>
+<p>为了同时处理偶数长度和奇数长度的字符串，采用一个trick来将字符串统一为奇数长度，即在字符之间和首尾添加一个原字符串不存在的字符，下文以<code>#</code>为例；为了进一步减少界判断的麻烦，可以在前面的基础上，再额外在首尾添加两个不存在的字符，用于标识边界。</p>
+<p>经过以上操作后，长度为n的字符串一定可以添加<code>n+1</code>个<code>#</code>和两个首尾标识，总长度变为<code>2n+3</code>，一定为奇数。</p>
+<p>以下是一个示例：</p>
+<figure class='item-img' data-src='./image-20250404152532761.png'><img src="./image-20250404152532761.png" alt="" /><figcaption>example</figcaption>
+</figure>
+<h3 id="长度数组的推导"><a href="#长度数组的推导" class="headerlink" title="长度数组的推导"></a>2.长度数组的推导</h3>
+<p>使用一个数组T[]来记录以i为中心的最大回文子串半径（不包括中心），即以i为中心的最大回文子串索引为<code>[i-T[i],i+T[i]]</code>。</p>
+<p>下面为了方便说明，使用未扩充的字符串来说明，长度为奇数。</p>
+<figure class='item-img' data-src='./image-20250404153058197.png'><img src="./image-20250404153058197.png" alt="" /><figcaption>example</figcaption>
+</figure>
+<p>可以发现，以红色的a为中心的回文子串，其左边和右边的<code>T[]</code>是以索引2为中心对称的，这样在计算<code>3,4</code>的最长子串时，就可以之间使用<code>T[0],T[1]</code>这些之前计算好的值，即<code>T[3]=T[1],T[4]=T[0]</code>以达到减少计算的目的。</p>
+<p><strong>但是镜像一定是对的吗？显然不！</strong></p>
+<p>假设以上选取的字符串<code>ababa</code>是其他字符串的一部分，考虑以下几种情况：</p>
+<h4 id="i.右边还有字符串"><a href="#i.右边还有字符串" class="headerlink" title="i.右边还有字符串"></a>I.右边还有字符串</h4>
+<figure class='item-img' data-src='./image-20250404154159915.png'><img src="./image-20250404154159915.png" alt="" /><figcaption>example</figcaption>
+</figure>
+<p>右边黄色部分是额外的字符串，可以发现在这种情况下，<code>T[3]&gt;T[1],T[4]&gt;T[0]</code></p>
+<h4 id="ii.左边还有字符串"><a href="#ii.左边还有字符串" class="headerlink" title="ii.左边还有字符串"></a>II.左边还有字符串</h4>
+<figure class='item-img' data-src='./image-20250404154455233.png'><img src="./image-20250404154455233.png" alt="" /><figcaption>example</figcaption>
+</figure>
+<p>左边黄色部分是额外的字符串，简单分析可以发现在这种情况下，<code>T[1]&gt;T[3],T[0]&gt;T[4]</code></p>
+<p>那么结合以上两种情况，什么时候对称是对的，什么时候不对？不对时要怎么获得正确的值？</p>
+<p>考虑下面这个字符串，以<code>b</code>为中心的最长回文子串范围为<code>[0,6]</code>，索引<code>7</code>超出了范围，使用黄色标注。</p>
+<p>绿色部分为关于<code>b</code>对称相等的，红色部分为不相等的。</p>
+<figure class='item-img' data-src='./image-20250404155319318.png'><img src="./image-20250404155319318.png" alt="" /><figcaption>example</figcaption>
+</figure>
+<p>可以发现，当<code>i</code>的最长回文子串是<strong>中心的最长回文子串</strong>的子集时，对称成立。以<code>s[5]</code>为例，<code>s[5]</code>的最长回文子串为<code>aaa</code>，此时子串的索引范围是<code>[4,6]</code>，以<code>b</code>为中心的最长回文子串索引范围是<code>[0,6]</code>，显然<code>[4,6]</code>是<code>[0,6]</code>的子集。那么不成立的情况呢？以<code>6</code>为例<code>6+1=7 &gt; 6</code>，所以此时超出范围，对称<strong>可能</strong>不成立，即实际值会<strong>大于等于</strong>对称的值。</p>
+<p>由于算法是从左往右推导，下面考虑左边有字符串的情况：</p>
+<figure class='item-img' data-src='./image-20250404160752407.png'><img src="./image-20250404160752407.png" alt="" /><figcaption>example</figcaption>
+</figure>
+<p>同理，以<code>s[0]</code>为中心的最大回文子串超出了以<code>b</code>为中心的最大回文子串范围，所以<code>T[6]&lt;T[0]</code>。</p>
+<p>那么我们知道了问题所在，要如何解决这个问题？依旧以上图为例，假设我们此时要计算<code>T[6]</code>，我们要如何利用已有的数据来简化计算？</p>
+<p>很简单，那就是利用对称位置上的值，以<code>b</code>为中心，<code>6</code>的对称位置为<code>T[2*3 - 6]=T[0]</code>，但是根据上文<code>T[0]</code>是偏大的，所以我们不能直接拿来用，而是只取其属于<code>b</code>的最长回文子串范围内的部分。</p>
+<p>索引为<code>i</code>的最长回文子串左边界可以通过<code>i-T[i]</code>计算得到，下面取索引为<code>0</code>的最长回文子串左边界为<code>a_left_border=0-T[0]=-2</code>，<code>b</code>的最长回文子串左边界为<code>b_left_border=3-T[3]=0</code> ，在已知a的最长回文子串左越界的情况下，<code>a_left_border &lt; b_left_border</code>，<code>s[0]</code>到<code>b</code>的左边界距离为<code>dis = idx_a - b_left_border = 0 - 0 = 0</code>，也就是我们实际能取的距离是<code>dis=0</code>，为了进一步简化dis的计算，我们可以利用以b为中心的对称性，dis等于<code>s[6]</code>的对称点<code>s[0]</code>到<code>b_left_border</code>的距离，那么就也等于<code>s[6]</code> 到<code>b_right_border</code>的距离，即<code>dis = 6 - (3 + 3) = 0</code>。</p>
+<p>用公式来表达就是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">i = <span class="hljs-number">6</span>;<br>center = <span class="hljs-number">3</span>;<br>mirror_i = <span class="hljs-number">2</span>*center - i = <span class="hljs-number">0</span>;<br>left_border = center - T[center] = <span class="hljs-number">0</span>;<br>right_border = center + T[center] = <span class="hljs-number">6</span>;<br><br>dis = right_border - i = <span class="hljs-number">0</span>; <span class="hljs-comment">// dis = mirror_i - left_border;</span><br>T[i] = min(dis, T[mirror]);<br></code></pre></td></tr></table></figure>
+<h4 id="iii.-ti中心扩展"><a href="#iii.-ti中心扩展" class="headerlink" title="iii.-ti中心扩展"></a>III. T[i]中心扩展</h4>
+<p>综上，我们找到了当对称点最大回文子串出现越界时的处理方法，当然，并不是<code>T[i] = min(dis, T[mirror])</code>这个值就是<code>T[i]</code>的最终结果，因为右边还有未考虑的字符，也就是<code>T[i]</code>还有可能变大，此时就使用中心扩展算法，该算法不是本文的重点，此处不多赘述。</p>
+<p>伪代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">while</span>(s[i-T[i]-<span class="hljs-number">1</span>] == s[i+T[i]+<span class="hljs-number">1</span>])&#123;<br> T[i]++;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="中心的移动"><a href="#中心的移动" class="headerlink" title="中心的移动"></a>3. 中心的移动</h3>
+<p>通过上文可以发现，判断<code>i</code>是否越界重点是中心最长子串的左右边界，代码中常取最右边界，当新计算出的<code>i+T[i]</code>大于之前中心的最右边界时，我们可以更新中心到<code>i</code>。若<code>i&gt;=right_border</code>则直接进行中心扩展。</p>
+<h3 id="misc"><a href="#misc" class="headerlink" title="misc"></a>4. MISC</h3>
+<p>综上，我们可以把任意字符串输入转换为奇数长度的字符串，又有了对于奇数长度字符串，利用<code>T[i]</code>降低时间复杂度的方法，只需把两者结合即可。</p>
+<p>以下图为例：</p>
+<figure class='item-img' data-src='./image-20250404202536591.png'><img src="./image-20250404202536591.png" alt="" /><figcaption>example</figcaption>
+</figure>
+<p>那么对于扩增后，长度为<code>2n+3</code>的字符串，我们可以求得其最长回文子串的半径，我们要如何获得原串的最长回文子串的长度？</p>
+<p>根据上图可以发现，两者是相等的。</p>
+<p>证明非常容易，对于扩增后的字符串，设<code>T[i] = n</code>，则总长度为<code>2n+1</code>，而对于原串中长度为<code>n</code>的子串，其扩增后长度也是<code>2n+1</code>，故<code>T[i]</code>即是扩增后最长子串半径，也是原串最长长度。</p>
+<p>原字符串的索引到扩增后索引的映射关系为<code>i -&gt; 2i+2</code>，对于扩增后字符串起始点为<code>center-T[center]</code>，映射到原字符串索引则为<code>(center-T[center])/2</code>。</p>
+<blockquote>
+<p>证明： 容易证明，最长子串的左右边界点所在的字符一定是<code>#</code>（不考虑首尾标记符），否则一定存在至少一个更大的子串，其在原有子串的基础上向左右扩展一个字符。</p>
+<p>对于原串的任意字符c，其在原串的索引为i，则在扩展串中的索引一定为2i+2；在原串中以c为左边界的最长回文子串，在扩展后左边界索引一定是2i+1，即字符c左边的#符号，由于代码取整的特点<code>(center-T[center])/2=(2i+1)/2=i</code>。</p>
+<p>证毕.</p>
+</blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2>
+<p>以下是一份参考代码(java)</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-palindromic-substring/">Leetcode: 5.Longest Palindromic Substring</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">longestPalindrome</span><span class="hljs-params">(String _s)</span> &#123;<br>    <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sb</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>    sb.append(<span class="hljs-string">&#x27;^&#x27;</span>);<br>    sb.append(<span class="hljs-string">&#x27;#&#x27;</span>);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> c : _s.toCharArray()) &#123;<br>      sb.append(c);<br>      sb.append(<span class="hljs-string">&#x27;#&#x27;</span>);<br>    &#125;<br>    sb.append(<span class="hljs-string">&#x27;@&#x27;</span>);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> sb.toString();<br><br>    <span class="hljs-comment">// record the maximum radius and center index</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">maxRadius</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, maxCen = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-type">int</span>[] T = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[s.length()];<br>    <span class="hljs-type">int</span> <span class="hljs-variable">center</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>; i &lt; s.length() - <span class="hljs-number">1</span>; i++) &#123;<br>      <span class="hljs-keyword">if</span> (i &lt; center + T[center]) &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">mirror_i</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span> * center - i;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">dis</span> <span class="hljs-operator">=</span> center + T[center] - i;<br>        T[i] = Math.min(T[mirror_i], dis);<br>      &#125;<br>      <span class="hljs-comment">// expand around center i</span><br>      <span class="hljs-keyword">while</span> (i - T[i] - <span class="hljs-number">1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; i + T[i] + <span class="hljs-number">1</span> &lt; s.length() &amp;&amp;<br>          s.charAt(i + T[i] + <span class="hljs-number">1</span>) == s.charAt(i - T[i] - <span class="hljs-number">1</span>)) &#123;<br>        T[i]++;<br>      &#125;<br>      <span class="hljs-comment">// update center index</span><br>      <span class="hljs-keyword">if</span> (i + T[i] &gt; center + T[center]) &#123;<br>        center = i;<br>      &#125;<br><br>      <span class="hljs-comment">// record the maximum radius</span><br>      <span class="hljs-keyword">if</span> (T[i] &gt; maxRadius) &#123;<br>        maxCen = i;<br>        maxRadius = T[i];<br>      &#125;<br><br>    &#125;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">begin</span> <span class="hljs-operator">=</span> (maxCen - T[maxCen]) / <span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">return</span> _s.substring(begin, begin + T[maxCen]);<br>  &#125;<br></code></pre></td></tr></table></figure>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="../../../2024/07/NLP/">Machine Learning Misc Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">Saniter</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social" href="https://github.com/nuclear06"><i class="fab fa-github" alt="GitHub"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-number">2.</span> <span class="toc-text">核心思想</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">1.字符串预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%BF%E5%BA%A6%E6%95%B0%E7%BB%84%E7%9A%84%E6%8E%A8%E5%AF%BC"><span class="toc-number">2.2.</span> <span class="toc-text">2.长度数组的推导</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#i.%E5%8F%B3%E8%BE%B9%E8%BF%98%E6%9C%89%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.2.1.</span> <span class="toc-text">I.右边还有字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ii.%E5%B7%A6%E8%BE%B9%E8%BF%98%E6%9C%89%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.2.2.</span> <span class="toc-text">II.左边还有字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#iii.-ti%E4%B8%AD%E5%BF%83%E6%89%A9%E5%B1%95"><span class="toc-number">2.2.3.</span> <span class="toc-text">III. T[i]中心扩展</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E5%BF%83%E7%9A%84%E7%A7%BB%E5%8A%A8"><span class="toc-number">2.3.</span> <span class="toc-text">3. 中心的移动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#misc"><span class="toc-number">2.4.</span> <span class="toc-text">4. MISC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li></ol></div></div><footer><nobr> Theme <a href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

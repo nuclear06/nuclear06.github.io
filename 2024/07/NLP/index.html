@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="[&quot;en&quot;,&quot;zh&quot;,&quot;default&quot;]" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Machine Learning Misc | SilenceSkY</title><link rel="icon" type="image/x-icon" href="../../../favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="../../../font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="../../../font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="../../../font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="../../../css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="../../../lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="../../../lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('../../../img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="../../../js/arknights.js"></script><script defer src="../../../js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="../../../lib/encrypt/hbe.js"></script><script async src="../../../js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="../../../"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="../../../archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Machine Learning Misc</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2024-07-21T15:19:02.000Z" id="date"> 2024-07-21</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-03-26T14:20:05.778Z" id="updated"> 2025-03-26</time></div></span><br><span>Word Count: <div class="control">458</div></span><br><span>Read Time: <div class="control">1 min</div></span></div></div><hr><div id="post-content"><h2 id="ml"><a href="#ml" class="headerlink" title="ml"></a>ML</h2>
+<ul>
+<li><p>核函数</p>
+<p>为了处理低维时不易分的数据，例如 $ x,y $ 通过非线性变换 $ phi $ 将其映射到高维空间 $ phi(x),(y) $ 并转为最优化其对偶问题，即一个关于 $ left(x),(y)$ 的问题，由于 $ phi $ 映射到的维度可能很高，导致其内积计算复杂度较高，而核函数提供了快速计算高维下的内积的方法。</p>
+<p>定义函数 $K(x,y) $ 其满足 $K(x,y) = (x),(y)$ 即可实现在低维直接计算高维内积，这个技巧称作<strong>核技巧</strong>，函数称为<strong>核函数</strong>，根据<strong>Mercer定理</strong>：对于一个满足特定条件的核函数（称为正定核），都存在一个与之对应的映射 $ phi $ ，可以将数据从原始空间映射到一个高维的特征空间。</p></li>
+</ul>
+<h2 id="nlp"><a href="#nlp" class="headerlink" title="nlp"></a>NLP</h2>
+<h3 id="word2vec"><a href="#word2vec" class="headerlink" title="word2vec"></a>word2vec</h3>
+<ul>
+<li><p>CBOW</p>
+<p>由上下文词计算中心词</p></li>
+<li><p>Skip-Gram</p>
+<p>由中心词计算上下文词</p></li>
+</ul>
+<p>原始公式中使用Softmax计算word概率，由于词表过大计算成本大</p>
+<ul>
+<li><p>Negative Sampling</p>
+<p>将目标变为二分类问题，判断是正样本还是负样本</p>
+<p>正样本：正确的中心词与上下文词配对</p>
+<p>负样本：错误的中心词与上下文词配对</p>
+<p>负样本根据词频进行随机采样，组成错误的配对，Skip-Gram随机采样上下文词，CBOW随机采样中心词</p>
+<p>word2vec使用调整的unigram分布</p>
+<p><span class="math display">\[
+Q(w) \propto count(w)^{3/4}
+\]</span></p></li>
+<li><p>Hierarchical Softmax</p>
+<p><strong>二叉树结构</strong>：将词汇表中的所有词（共 <em>V</em> 个）分配到二叉树的叶子节点，每个内部节点表示一个二分类器，每个节点可以接受向量输入，并给出左右子树的几率，计算量由 $ V $ 低至 $ log_2V $</p>
+<p><span class="math display">\[
+P(left | n, context) = \sigma(v_n^Tv_context) \\
+P(right | n, context) = 1- \sigma(v_n^Tv_context)
+\]</span></p></li>
+</ul>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="../../../2025/04/Manacher-Algorithm/">← Next Manacher算法</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="../BIOS-UEFI%E9%82%A3%E5%A5%97%E7%8E%A9%E6%84%8F/">BIOS/UEFI那套玩意 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">Saniter</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social" href="https://github.com/nuclear06"><i class="fab fa-github" alt="GitHub"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ml"><span class="toc-number">1.</span> <span class="toc-text">ML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nlp"><span class="toc-number">2.</span> <span class="toc-text">NLP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#word2vec"><span class="toc-number">2.1.</span> <span class="toc-text">word2vec</span></a></li></ol></li></ol></div></div><footer><nobr> Theme <a href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
